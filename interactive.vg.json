@@ -1,0 +1,43 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/roastedbun/Interactive-Viz/main/111.csv"},
+    "title": "Australian GDP since 1961",
+    "vconcat": [{
+        "width": 480,
+        "height": 240,
+        "mark": "area",
+        "encoding": {
+        "x": {
+        "field": "Year",
+        "type": "temporal",
+        "scale": {"domain": {"param": "brush"}},
+        "axis": {"title": ""}
+        },
+        "y": {"field": "GDP growth (annual %)", "type": "quantitative"}
+        }
+    },  {
+        "width": 480,
+        "height": 60,
+        "mark": "area",
+        "params": [{
+          "name": "brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }],
+            "encoding": {
+            "x": {
+            "field": "Year",
+            "type": "temporal"
+            },
+            "y": {
+            "field": "GDP growth (annual %)",
+            "type": "quantitative",
+            "axis": {"tickCount": 3, "grid": false}
+            },
+            "tooltip" : [
+                {"field" : "Year", "type": "temporal"},
+                {"field": "GDP growth (annual %)", "type": "quantitative"},
+                {"field": "Country\\.Name", "type": "ordinal"}
+              ]
+            }
+        }]
+    }
